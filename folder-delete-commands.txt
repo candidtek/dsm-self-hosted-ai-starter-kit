@@ -1,0 +1,12 @@
+rm -f -r /volume1/docker/n8n
+
+mkdir /volume1/docker/n8n
+mkdir /volume1/docker/n8n/core
+mkdir /volume1/docker/n8n/backup
+mkdir /volume1/docker/n8n/shared
+mkdir /volume1/docker/n8n/ollama
+mkdir /volume1/docker/n8n/postgres
+mkdir /volume1/docker/n8n/qdrant
+
+chown -R sshadmin /volume1/docker/n8n
+synoacltool -add /volume1/docker/n8n "everyone:*:allow:rwxpdDaARWc:fd"

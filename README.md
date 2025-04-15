@@ -44,7 +44,9 @@ Engineering world, handles large amounts of data safely.
 ```
 git clone https://github.com/candidtek/n8n-ai.git
 cd n8n-ai
-sudo COMPOSE_PROJECT_NAME=n8n_ai COMPOSE_PROFILES=cpu docker-compose up -d
+sudo docker-compose up -d
+cd ..
+rm -f -r n8n-ai
 ```
 
 ## ⚡️ Quick start and usage
