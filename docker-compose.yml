@@ -1,8 +1,40 @@
 volumes:
   n8n_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /volume1/docker/n8n_ai/n8n/core
+      o: bind
+  n8n_backup_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /volume1/docker/n8n_ai/n8n/backup
+      o: bind
+  n8n_shared_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /volume1/docker/n8n_ai/n8n/shared
+      o: bind
   postgres_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /volume1/docker/n8n_ai/postgres
+      o: bind
   ollama_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /volume1/docker/n8n_ai/ollama
+      o: bind
   qdrant_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /volume1/docker/n8n_ai/qdrant
+      o: bind
 
 networks:
   demo:
@@ -20,6 +52,9 @@ x-n8n: &service-n8n
     - N8N_ENCRYPTION_KEY
     - N8N_USER_MANAGEMENT_JWT_SECRET
     - OLLAMA_HOST=ollama:11434
+    - N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE=TRUE
+    - GENERIC_TIMEZONE:'Asia/Kolkata'
+    - TZ:'Asia/Kolkata'
   env_file:
     - .env
 
@@ -73,7 +108,7 @@ services:
       - "-c"
       - "n8n import:credentials --separate --input=/backup/credentials && n8n import:workflow --separate --input=/backup/workflows"
     volumes:
-      - ./n8n/backup:/backup
+      - n8n_backup_storage:/backup
     depends_on:
       postgres:
         condition: service_healthy
@@ -87,8 +122,8 @@ services:
       - 5678:5678
     volumes:
       - n8n_storage:/home/node/.n8n
-      - ./n8n/backup:/backup
-      - ./shared:/data/shared
+      - n8n_backup_storage:/backup
+      - n8n_shared_storage:/data/shared
     depends_on:
       postgres:
         condition: service_healthy
