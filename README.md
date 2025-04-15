@@ -42,8 +42,8 @@ Engineering world, handles large amounts of data safely.
 #### For everyone else
 
 ```
-git clone https://github.com/n8n-io/dsm-self-hosted-ai-starter-kit.git
-cd dsm-self-hosted-ai-starter-kit
+git clone https://github.com/candidtek/n8n-ai.git
+cd n8n-ai
 sudo COMPOSE_PROJECT_NAME=n8n_ai COMPOSE_PROFILES=cpu docker-compose up -d
 ```
 
