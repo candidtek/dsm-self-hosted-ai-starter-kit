@@ -37,13 +37,6 @@ Engineering world, handles large amounts of data safely.
 
 ## Installation
 
-### Cloning the Repository
-
-```bash
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
-cd self-hosted-ai-starter-kit
-```
-
 ### Running n8n using Docker Compose
 
 #### For everyone else
